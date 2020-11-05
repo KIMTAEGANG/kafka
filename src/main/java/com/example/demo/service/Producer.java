@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 public class Producer {
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
     private static final String TOPIC = "users";
+    private static final String TOPIC1 = "users1";
+    private static final String TOPIC2 = "users2";
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
@@ -22,5 +24,7 @@ public class Producer {
     public void sendMessage(String message){
         logger.info(String.format("#### ->Producing message -> %s", message));
         this.kafkaTemplate.send(TOPIC, message);
+        this.kafkaTemplate.send(TOPIC1, message);
+        this.kafkaTemplate.send(TOPIC2, message);
     }
 }
